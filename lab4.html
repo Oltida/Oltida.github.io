@@ -3,47 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store Order Page</title>
+    <title>Order Confirmation</title>
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: "Times New Roman", Georgia, serif;
             text-align: center;
-            background-color: #f4f4f4;
-            margin: 50px;
+            background: linear-gradient(120deg, #fdfbfb, #e2d1c3); /* Light Elegant Beige */
+            color: #333;
+            padding: 20px;
         }
+
         .container {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: inline-block;
+            margin-top: 50px;
+            width: 60%;
         }
+
         h1 {
-            color: #333;
+            font-family: "Times New Roman", Georgia, serif;
+            font-weight: bold;
+            font-size: 2em;
+            color: #4A47A3;
+            text-shadow: 2px 2px 5px rgba(74, 71, 163, 0.3);
         }
+
         p {
+            font-family: "Times New Roman", Georgia, serif;
             font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .details {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .order-again {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2ecc71;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .order-again:hover {
+            background: #27ae60;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 id="greeting"></h1>
-        <p><strong>Item Ordered:</strong> <span id="item"></span></p>
-        <p><strong>Quantity:</strong> <span id="quantity"></span></p>
-        <p><strong>Expected Arrival Date:</strong> <span id="arrival-date"></span></p>
-    </div>
-
     <script>
-        // Alert Welcome Message
         alert("Welcome to Our Store!");
 
-        // Prompt User for Details
         let name = prompt("What is your name?");
         let item = prompt("What item would you like to order?");
         let quantity;
-        
+
         while (true) {
             quantity = prompt("How many would you like? (1-99)");
             if (quantity >= 1 && quantity <= 99) {
@@ -53,7 +79,6 @@
             }
         }
 
-        // Get Current Time for Greeting
         let currentHour = new Date().getHours();
         let greetingText;
         
@@ -65,17 +90,19 @@
             greetingText = "Good Evening";
         }
 
-        // Calculate Arrival Date (7 days from now)
         let arrivalDate = new Date();
         arrivalDate.setDate(arrivalDate.getDate() + 7);
         let formattedDate = arrivalDate.toDateString();
 
-        // Display Information on the Web Page
-        document.getElementById("greeting").innerText = `${greetingText} ${name}, Thank you for Ordering!`;
-        document.getElementById("item").innerText = item;
-        document.getElementById("quantity").innerText = quantity;
-        document.getElementById("arrival-date").innerText = formattedDate;
-
+        document.write(`
+            <div class="container">
+                <h1>${greetingText}, ${name}! Thank you for Ordering!</h1>
+                <p><strong>Item Ordered:</strong> <span class="details">${item}</span></p>
+                <p><strong>Quantity:</strong> <span class="details">${quantity}</span></p>
+                <p><strong>Expected Arrival Date:</strong> <span class="details">${formattedDate}</span></p>
+                <button class="order-again" onclick="location.reload()">Order Again</button>
+            </div>
+        `);
     </script>
 
 </body>
