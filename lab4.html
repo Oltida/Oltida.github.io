@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Order Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <p><strong>Item Ordered:</strong> <span id="item"></span></p>
+        <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+        <p><strong>Expected Arrival Date:</strong> <span id="arrival-date"></span></p>
+    </div>
+
+    <script>
+        // Alert Welcome Message
+        alert("Welcome to Our Store!");
+
+        // Prompt User for Details
+        let name = prompt("What is your name?");
+        let item = prompt("What item would you like to order?");
+        let quantity;
+        
+        while (true) {
+            quantity = prompt("How many would you like? (1-99)");
+            if (quantity >= 1 && quantity <= 99) {
+                break;
+            } else {
+                alert("Please enter a number between 1 and 99.");
+            }
+        }
+
+        // Get Current Time for Greeting
+        let currentHour = new Date().getHours();
+        let greetingText;
+        
+        if (currentHour < 12) {
+            greetingText = "Good Morning";
+        } else if (currentHour < 18) {
+            greetingText = "Good Afternoon";
+        } else {
+            greetingText = "Good Evening";
+        }
+
+        // Calculate Arrival Date (7 days from now)
+        let arrivalDate = new Date();
+        arrivalDate.setDate(arrivalDate.getDate() + 7);
+        let formattedDate = arrivalDate.toDateString();
+
+        // Display Information on the Web Page
+        document.getElementById("greeting").innerText = `${greetingText} ${name}, Thank you for Ordering!`;
+        document.getElementById("item").innerText = item;
+        document.getElementById("quantity").innerText = quantity;
+        document.getElementById("arrival-date").innerText = formattedDate;
+
+    </script>
+
+</body>
+</html>
