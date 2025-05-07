@@ -33,20 +33,6 @@
       text-shadow: 1px 1px 4px #000;
     }
 
-    .content-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 50px;
-    }
-
-    .options, .history {
-      flex: 1;
-      min-width: 280px;
-    }
-
     .quote {
       font-size: 0.9rem;
       font-style: italic;
@@ -64,6 +50,27 @@
       color: #f8f9fa;
       text-shadow: 1px 1px 4px #000;
     }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, #ffffff80, transparent);
+      border: none;
+      margin: 2rem 0;
+    }
+
+    .card-link {
+      background-color: #ffffff;
+      color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .card-link:hover {
+      transform: translateY(-5px);
+    }
   </style>
 </head>
 <body>
@@ -75,22 +82,34 @@
 
   <!-- Main content -->
   <div class="container py-5">
-    <div class="overlay text-center">
-      <h1 class="mb-4">Sip Central 🍸</h1>
-      <p class="intro-text">You thirsty? This site has your back. Explore a world of cocktails, get inspired, and find your next favorite drink — whether you’re into bold mixes or fruity classics. Let your taste buds travel.</p>
+    <div class="overlay">
+      <h1 class="text-center mb-4">Sip Central 🍸</h1>
 
-      <div class="content-container">
-        <!-- Left: Options -->
-        <div class="options">
-          <a href="random.html" class="btn btn-light btn-lg w-100 mb-3">🍹 Surprise Me</a>
-          <a href="search.html" class="btn btn-outline-light btn-lg w-100">🔍 Find a Drink</a>
+      <!-- Intro first -->
+      <p class="intro-text text-center">You thirsty? This site has your back. Explore a world of cocktails, get inspired, and find your next favorite drink — whether you’re into bold mixes or fruity classics. Let your taste buds travel.</p>
+
+      <hr class="divider">
+
+      <!-- Did You Know second -->
+      <div class="history mb-5">
+        <h4 class="text-center">Did you know?</h4>
+        <p class="mt-3">The first known guide to cocktail making was published in 1862 by well-known American bartender Jerry Thomas. Thomas owned and operated salons across New York City in the 1800s and is often considered the father of American mixology.</p>
+        <p>Cocktails are traditionally thought of as an American innovation, but they were actually at least partly inspired by British punches—big bowls of spirits mixed with fruit crush, spices, and other flavors, consumed in punch houses within the 18th century.</p>
+      </div>
+
+      <!-- Random/Search third -->
+      <div class="row justify-content-center g-4">
+        <div class="col-md-5">
+          <a href="random.html" class="card-link d-block text-center">
+            <h4>🍹 Surprise Me</h4>
+            <p>Discover a new cocktail at random and learn how to make it.</p>
+          </a>
         </div>
-
-        <!-- Right: Did you know -->
-        <div class="history">
-          <h4>Did you know?</h4>
-          <p class="mt-2">The first known guide to cocktail making was published in 1862 by well-known American bartender Jerry Thomas. Thomas owned and operated salons across New York City in the 1800s and is often considered the father of American mixology.</p>
-          <p>Cocktails are traditionally thought of as an American innovation, but they were actually at least partly inspired by British punches—big bowls of spirits mixed with fruit crush, spices, and other flavors, consumed in punch houses within the 18th century.</p>
+        <div class="col-md-5">
+          <a href="search.html" class="card-link d-block text-center">
+            <h4>🔍 Find a Drink</h4>
+            <p>Search for a cocktail by name or ingredient to match your vibe.</p>
+          </a>
         </div>
       </div>
 
