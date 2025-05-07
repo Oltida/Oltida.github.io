@@ -63,18 +63,37 @@
         results.innerHTML = `<p class='text-danger text-center'>No cocktails found!</p>`;
         return;
       }
-      results.innerHTML = data.drinks.map(drink => `
-        <div class="col-md-4">
-          <div class="card text-dark h-100">
-            <img src="${drink.strDrinkThumb}" class="card-img-top" alt="${drink.strDrink}">
-            <div class="card-body">
-              <h5 class="card-title">${drink.strDrink}</h5>
-              <p><strong>Category:</strong> ${drink.strCategory}</p>
-              <p><strong>Glass:</strong> ${drink.strGlass}</p>
+     const drinks = data.drinks;
+      const fullDetails = await Promise.all(drinks.map(async drink => {
+        const detailRes = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`);
+        const detailData = await detailRes.json();
+        return detailData.drinks[0];
+      }));
+
+      results.innerHTML = fullDetails.map(drink => {
+        const ingredients = [];
+        for (let i = 1; i <= 15; i++) {
+          if (drink[`strIngredient${i}`]) {
+            ingredients.push(`${drink[`strMeasure${i}`] || ''} ${drink[`strIngredient${i}`]}`.trim());
+          }
+        }
+
+        return `
+          <div class="col-md-4">
+            <div class="card text-dark h-100">
+              <img src="${drink.strDrinkThumb}" class="card-img-top" alt="${drink.strDrink}">
+              <div class="card-body">
+                <h5 class="card-title">${drink.strDrink}</h5>
+                <p><strong>Category:</strong> ${drink.strCategory}</p>
+                <p><strong>Glass:</strong> ${drink.strGlass}</p>
+                <p><strong>Ingredients:</strong></p>
+                <ul>${ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                <p><strong>Instructions:</strong> ${drink.strInstructions}</p>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     });
   </script>
 </body>
