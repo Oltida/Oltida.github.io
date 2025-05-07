@@ -40,7 +40,6 @@
 
   <script>
     const container = document.getElementById('cocktail-container');
-    const btn = document.getElementById('new-drink');
 
     async function fetchRandomCocktail() {
       container.innerHTML = "Loading...";
@@ -72,14 +71,6 @@
       `;
     }
 
-    btn.addEventListener('click', fetchRandomCocktail);
-    fetchRandomCocktail();
-  </script>
-</body>
-</html>
-
-
-    btn.addEventListener('click', fetchRandomCocktail);
     fetchRandomCocktail();
   </script>
 </body>
